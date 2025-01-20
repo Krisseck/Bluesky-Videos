@@ -25,7 +25,7 @@ nav {
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 10vh;
+  height: 7vh;
   background: black;
   border-top: 2px solid #666;
   z-index: 900;

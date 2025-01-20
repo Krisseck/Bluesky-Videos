@@ -1,6 +1,6 @@
 <template>
-  <div id="feed">
-    <div class="feed-inner-container" @touchstart="startDragging">
+  <div id="feed" @pointerdown="startDragging">
+    <div class="feed-inner-container">
       <article class="post" v-for="post in posts">
         <img :src="post.post.author.avatar" :alt="post.post.author.handle" class="avatar">
         <template v-if="post.post.embed === undefined">
@@ -15,7 +15,7 @@
             <div class="image-post">
               <img :data-src="//@ts-ignore
               post.post.embed.images[0].fullsize" :alt="//@ts-ignore
-              post.post.embed.images[0].alt" class="image" draggable="false">
+              post.post.embed.images[0].alt" class="image">
             </div>
             <PostBottomText :post="post"></PostBottomText>
           </template>
@@ -55,6 +55,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  touch-action: none;
   .feed-inner-container {
     position: relative;
   }
@@ -178,22 +179,24 @@ onUpdated(() => {
   initPosts(currentPost);
 });
 
-function startDragging(e: TouchEvent) {
+function startDragging(e: PointerEvent) {
 
   // Don't allow dragging if the tween is playing
   if(!postTween || !postTween.isPlaying()) {
 
     dragStartPosition = e.screenY;
 
-    document.addEventListener('touchmove', movePosts);
+    document.addEventListener('pointermove', movePosts);
 
-    document.addEventListener('touchend', stopMovingPosts);
+    document.addEventListener('pointerup', stopMovingPosts);
+
+    document.querySelector("#feed .feed-inner-container")!.setPointerCapture(e.pointerId);
 
   }
 
 }
 
-function movePosts(e: TouchEvent) {
+function movePosts(e: PointerEvent) {
 
   let currentMargin = currentPost * feedContainerHeight * -1;
 
@@ -205,10 +208,12 @@ function movePosts(e: TouchEvent) {
   }
 }
 
-function stopMovingPosts(e: TouchEvent) {
+function stopMovingPosts(e: PointerEvent) {
 
-  document.removeEventListener('touchmove', movePosts);
-  document.removeEventListener('touchend', stopMovingPosts);
+  document.removeEventListener('pointermove', movePosts);
+  document.removeEventListener('pointerup', stopMovingPosts);
+
+  document.querySelector("#feed .feed-inner-container")!.releasePointerCapture(e.pointerId);
 
   let currentPostElement = document.querySelectorAll('#feed .post').item(currentPost) as HTMLElement;
 
