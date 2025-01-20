@@ -1,0 +1,14 @@
+@use './reset.scss';
+
+@use '@fontsource/rethink-sans';
+
+body {
+  font-family: 'Rethink Sans', 'Helvetica Neue', sans-serif;
+  background: black;
+  color: white;
+  line-height: 1.3;
+}
+
+#app {
+
+}
