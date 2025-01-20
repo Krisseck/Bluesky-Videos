@@ -1,6 +1,6 @@
 <template>
   <div id="feed">
-    <div class="feed-inner-container" @pointerdown="startDragging">
+    <div class="feed-inner-container" @touchstart="startDragging">
       <article class="post" v-for="post in posts">
         <img :src="post.post.author.avatar" :alt="post.post.author.handle" class="avatar">
         <template v-if="post.post.embed === undefined">
@@ -178,22 +178,22 @@ onUpdated(() => {
   initPosts(currentPost);
 });
 
-function startDragging(e: PointerEvent) {
+function startDragging(e: TouchEvent) {
 
   // Don't allow dragging if the tween is playing
   if(!postTween || !postTween.isPlaying()) {
 
     dragStartPosition = e.screenY;
 
-    document.addEventListener('pointermove', movePosts);
+    document.addEventListener('touchmove', movePosts);
 
-    document.addEventListener('pointerup', stopMovingPosts);
+    document.addEventListener('touchend', stopMovingPosts);
 
   }
 
 }
 
-function movePosts(e: PointerEvent) {
+function movePosts(e: TouchEvent) {
 
   let currentMargin = currentPost * feedContainerHeight * -1;
 
@@ -205,10 +205,10 @@ function movePosts(e: PointerEvent) {
   }
 }
 
-function stopMovingPosts(e: PointerEvent) {
+function stopMovingPosts(e: TouchEvent) {
 
-  document.removeEventListener('pointermove', movePosts);
-  document.removeEventListener('pointerup', stopMovingPosts);
+  document.removeEventListener('touchmove', movePosts);
+  document.removeEventListener('touchend', stopMovingPosts);
 
   let currentPostElement = document.querySelectorAll('#feed .post').item(currentPost) as HTMLElement;
 
