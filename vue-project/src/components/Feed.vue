@@ -70,10 +70,10 @@
     .avatar {
       position: absolute;
       bottom: 20vh;
-      right: 2vw;
-      width: 12vw;
-      height: 12vw;
-      border-radius: 12vw;
+      right: 3vw;
+      width: 14vw;
+      height: 14vw;
+      border-radius: 14vw;
       z-index: 500;
     }
     .image-post {
@@ -165,7 +165,7 @@ const props = defineProps<{
 
 let currentPost = 0;
 let feedContainerHeight = 0;
-let dragThreshold = 0.2;
+let dragThreshold = 0.15;
 let container = undefined as HTMLElement|undefined;
 let dragStartPosition = 0;
 let postTween = undefined as Tween|undefined;

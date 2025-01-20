@@ -23,7 +23,7 @@
   }
   .text {
     margin-top: 2.5vh;
-    font-size: 2vh;
+    font-size: 1.8vh;
     text-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.9), 0 0 1vh rgba(0, 0, 0, 0.9), 0 0 1.5vh rgba(0, 0, 0, 0.9);
     white-space: pre-line;
   }
