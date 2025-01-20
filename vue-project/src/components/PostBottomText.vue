@@ -18,7 +18,7 @@
   color: white;
   .author {
     font-weight: bold;
-    font-size: 3.5vh;
+    font-size: 2.5vh;
     text-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.9), 0 0 1vh rgba(0, 0, 0, 0.9), 0 0 1.5vh rgba(0, 0, 0, 0.9);
   }
   .text {

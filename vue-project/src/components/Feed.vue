@@ -69,11 +69,11 @@
     overflow: hidden;
     .avatar {
       position: absolute;
-      bottom: 12vh;
+      bottom: 20vh;
       right: 2vw;
-      width: 8vw;
-      height: 8vw;
-      border-radius: 8vw;
+      width: 12vw;
+      height: 12vw;
+      border-radius: 12vw;
       z-index: 500;
     }
     .image-post {
@@ -125,7 +125,7 @@
       overflow: hidden;
       .embed-image {
         width: 100%;
-        height: 38vh;
+        height: 30vh;
         object-fit: cover;
       }
       .embed-title {
